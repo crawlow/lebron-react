@@ -1,5 +1,5 @@
 import { Button } from "@shared/button/button";
-import { VueInput } from "@shared/input/input";
+import { Input } from "@shared/input/input";
 import { Validators } from "@shared/common/validators/Validators";
 import { useForm } from "react-hook-form";
 import s from "./../style/sign-form.module.scss";
@@ -29,7 +29,7 @@ export const SignInForm = () => {
 
   return (
     <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-      <VueInput        
+      <Input
         id="login"
         label="Login"
         autoComplete="username"
@@ -40,7 +40,7 @@ export const SignInForm = () => {
         })}
         error={errors.login}
       />
-      <VueInput
+      <Input
         id="password"
         label="Password"
         type="password"
@@ -52,13 +52,13 @@ export const SignInForm = () => {
         })}
         error={errors.password}
       />
-      <Button type="submit">Sign In</Button>
+      <Button>Sign In</Button>
       <p className={s.suggestion}>
-				Not a member yet?{' '}
-				<Link to={ROUTES.SignUp} className={s.link}>
-					Sign Up
-				</Link>
-			</p>
+        Not a member yet?{" "}
+        <Link to={ROUTES.SignUp} className={s.link}>
+          Sign Up
+        </Link>
+      </p>
     </form>
   );
 };
