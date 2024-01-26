@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "Avenir Black";
+  src: url("../fonts/Avenir\ Black.ttf");
+}
+
+@font-face {
+  font-family: "Avenir Book";
+  src: url("../fonts/Avenir\ Book.ttf");
+}
+
+@font-face {
+  font-family: "Avenir Medium";
+  src: url("../fonts/Avenir\ Medium.ttf");
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+}
+
+//resets
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Avenir Book";
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+button,
+input {
+  appearance: none;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}

@@ -1,20 +1,14 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Link, Outlet } from 'react-router-dom'
+import { Router } from "./router/router";
+import Favicon from "react-favicon";
+import '@assets/styles/index.scss';
 
 function App() {
   return (
     <>
-        <Link to="about">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </Link>
-        <Link to="home">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </Link>
-      <Outlet />
+      <Favicon url="/favicon.ico" />
+      <Router />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

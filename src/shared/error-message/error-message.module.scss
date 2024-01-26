@@ -1,0 +1,7 @@
+.error {
+    color: $lightest-red;
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 2px;
+    @include avenir-medium;
+}
