@@ -22,10 +22,11 @@
     "baseUrl": ".",
     "paths": {
 			"@assets/*": ["./src/assets/*"],
-			"@router/*": ["./src/router/*"],
-			"@shared/*": ["./src/shared/*"],
-			"@widgets/*": ["./src/widgets/*"],
+			"@router/*": ["src/app/router/*"],
 			"@pages/*": ["./src/pages/*"],
+			"@widgets/*": ["./src/widgets/*"],
+			"@features/*": ["./src/features/*"],
+			"@shared/*": ["./src/shared/*"],
 			"@api/*": ["./src/api/*"],
 		}
   },

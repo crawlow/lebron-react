@@ -1,0 +1,34 @@
+.user__info {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+
+	&__name {
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 24px;
+		color: $dark-gray;
+	}
+
+	img {
+		max-width: 36px;
+		max-height: 36px;
+	}
+
+	@include media('<desktop') {
+		font-size: 15px;
+	}
+}
+.sidebar__user {
+	.user__info {
+		&__name {
+			width: 60px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			@include media('<desktop') {
+				width: 100px;
+			}
+		}
+	}
+}

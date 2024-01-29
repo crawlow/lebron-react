@@ -1,0 +1,41 @@
+.default_layout {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: $superlight-gray;
+
+	&__wrapper {
+		padding-top: 80px;
+		padding-left: 140px;
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+
+		.main_container {
+			flex-grow: 1;
+			padding: 32px 80px;
+			display: flex;
+			flex-direction: column;
+		}
+	}
+
+	@include media('<desktop') {
+		&__wrapper {
+			padding-left: 0;
+			padding-top: 62px;
+
+			.main_container {
+				padding: 32px;
+			}
+		}
+	}
+
+	@include media('<tablet') {
+		&__wrapper {
+
+			.main_container {
+				padding: 16px 12px;
+			}
+		}
+	}
+}

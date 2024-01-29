@@ -1,0 +1,145 @@
+.sidebar {
+  position: fixed;
+  width: 140px;
+  height: 100%;
+  background-color: $white;
+  display: flex;
+  padding-top: 80px;
+
+  ul {
+    padding: 32px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    flex-grow: 1;
+
+    .menu__item {
+      display: flex;
+      justify-content: center;
+      font-size: 12px;
+
+      &.logout {
+        margin-top: auto;
+        cursor: pointer;
+      }
+
+      .link,
+      > span {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        transition: 0.15s ease-in-out;
+        color: $light-gray;
+        gap: 4px;
+
+        svg {
+          path {
+            transition: 0.15s ease-in-out;
+          }
+        }
+
+        &.active {
+          color: $red;
+
+          svg {
+            path {
+              fill: $red;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        a,
+        > span {
+          color: $light-red;
+        }
+
+        svg {
+          path {
+            fill: $light-red;
+          }
+        }
+      }
+    }
+  }
+
+  &__user {
+    display: none;
+  }
+
+  @include media("<desktop") {
+    width: 200px;
+    left: -200px;
+	top: 0;
+    transition: left 0.25s ease-in-out;
+    padding-top: 62px;
+
+    &__user {
+      display: block;
+    }
+
+    &__overlay {
+      position: fixed;
+      top: 62px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #414141;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .fade_enter,
+	.fade_enter_active  {
+      opacity: 0.6;
+    }
+    .fade_exit,
+	.fade_exit_active {
+      opacity: 0;
+    }
+
+    &.active {
+      left: 0;
+    }
+	ul {
+	  position: relative;
+	  z-index: 1;
+	  background-color: $white;
+	  align-items: start;
+	  padding: 16px 0 24px;
+	  gap: 24px;
+
+	  .menu__item {
+		padding-left: 20px;
+
+		&:first-child {
+		  padding-left: 16px;
+		  border-bottom: 1px solid $gray;
+		  width: 100%;
+		  justify-content: flex-start;
+		  padding-bottom: 16px;
+		}
+
+		.link,
+		span {
+		  flex-direction: row;
+		  gap: 8px;
+
+		  &.router-link-active {
+			color: $red;
+		  }
+		}
+	  }
+
+	  .sidebar__user {
+		padding-left: 16px;
+
+		.user__info {
+		  flex-direction: row-reverse;
+		}
+	  }
+	}
+  }
+}

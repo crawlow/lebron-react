@@ -1,0 +1,47 @@
+.error {
+	margin: auto;
+	width: 556px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	color: $gray;
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 32px;
+	border-radius: 15px;
+	background-color: $white;
+	padding: 48px 36px;
+
+	&__img {
+		width: 380px;
+		max-width: 100%;
+	}
+
+	&__title {
+		color: $lightest-red;
+		font-size: 36px;
+		line-height: 50px;
+		margin-top: 48px;
+		margin-bottom: 24px;
+	}
+
+	@include media("<tablet") {
+		font-size: 15px;
+		line-height: 24px;
+		max-width: auto;
+		flex-grow: 1;
+		margin: 0 -16px;
+		border-radius: 0;
+
+		&__img {
+			width: 275px;
+		}
+
+		&__title {
+			font-size: 17px;
+			margin-bottom: 16px;
+			line-height: 25px;
+		}
+	}
+}

@@ -1,4 +1,4 @@
-import { Router } from "./router/router";
+import { Router } from "./app/router/router";
 import Favicon from "react-favicon";
 import '@assets/styles/index.scss';
 

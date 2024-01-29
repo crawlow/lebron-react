@@ -1,0 +1,44 @@
+.image-loader {
+	background-color: $light-gray;
+	aspect-ratio: 1.2874;
+	border-radius: 10px;
+	max-width: 336px;
+	transition: 0.15s ease-in-out;
+	position: relative;
+	cursor: pointer;
+
+	&__wrapper {
+		display: flex;
+		height: 100%;
+		width: 100%;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__img {
+		max-width: 100%;
+		max-height: 100%;
+	}
+
+	&__placeholder {
+		background-image: url('@/shared/assets/img/icons/add_a_photo_24px.svg');
+		width: 75px;
+		height: 75px;
+	}
+
+	&:hover {
+		opacity: 0.5;
+
+		&:after {
+			content: "";
+			background-image: url('@/shared/assets/img/icons/add_a_photo_24px.svg');
+			background-position: center center;
+			background-repeat: no-repeat;
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+		}
+	}
+}

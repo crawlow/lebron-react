@@ -1,0 +1,38 @@
+.header_layout {
+	height: 80px;
+	position: fixed;
+	width: 100%;
+	background-color: $white;
+	box-shadow: 0px 1px 10px 0px rgba(209, 209, 209, 0.50);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 51px;
+	top: 0;
+	z-index: 1;
+
+	&__hamburger {
+		display: none;
+	}
+
+	@include media('<desktop') {
+		height: 62px;
+		justify-content: center;
+
+		&__hamburger {
+			display: block;
+			position: absolute;
+			top: 15px;
+			left: 8px;
+			width: 24px;
+			height: 24px;
+			padding: 4px;
+			background-image: url('@assets/img/icons/menu_24px.svg');
+			cursor: pointer;
+		}
+
+		&__user {
+			display: none;
+		}
+	}
+}
