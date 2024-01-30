@@ -17,8 +17,12 @@ export const Layout = () => {
 
   const [isMenuActive, setIsMenuActive] = useState(false);
   const handleMenu = () => {
-    setIsMenuActive(!isMenuActive);
+      setIsMenuActive(!isMenuActive);    
   };
+
+  const closeMenu = () => {
+    setIsMenuActive(false);
+  }
 
   return (
     <div className={s.default_layout}>
@@ -28,7 +32,7 @@ export const Layout = () => {
           <Outlet />
         </main>
       </div>
-      <Sidebar isOpen={isMenuActive} close={handleMenu} />
+      <Sidebar isOpen={isMenuActive} close={closeMenu} />
     </div>
   );
 };
