@@ -1,11 +1,12 @@
-import { NavLink } from "react-router-dom";
 import LogoUrl from "@assets/img/logo/logo.svg";
 import s from "./logo.module.scss";
+import { ROUTES } from "@router/router";
+import { Link } from "react-router-dom";
 
 export const Logo = () => {
   return (
-    <NavLink className={s.logoLink} to={"/"}>
+    <Link className={s.logoLink} to={ROUTES.Teams}>
       <img src={LogoUrl} className={s.logo} />
-    </NavLink>
+    </Link>
   );
 };

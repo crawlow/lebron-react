@@ -4,8 +4,11 @@ import { Validators } from "@shared/common/validators/Validators";
 import { Input } from "@shared/input/input";
 import { useForm } from "react-hook-form";
 import s from "./../style/sign-form.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "@router/router";
+import { useSignUpMutation } from "@entities/api/auth/authApi";
+import { useAppDispatch } from "@entities/redux/store";
+import { loginAction } from "@entities/redux/authSlice";
 
 interface ISignUpForm {
   name: string;
@@ -16,8 +19,26 @@ interface ISignUpForm {
 }
 
 export const SignUpForm = () => {
-  const onSignUp = (data: any) => {
-    console.log("onSignUp", data);
+  const [signUp, { isLoading }] = useSignUpMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const onSignUp = async (data: ISignUpForm) => {
+    try {
+      const user = await signUp({
+        login: data.login,
+        password: data.password,
+        userName: data.name,
+      }).unwrap();
+      dispatch(loginAction(user));
+      navigate(ROUTES.Teams);
+    } catch (e: any) {
+      if (e?.originalStatus == 409) {
+        console.log(`User with this login already exists`);
+      } else {
+        console.log(`Something went wrong`);
+      }
+    }
   };
   const {
     register,
@@ -78,25 +99,27 @@ export const SignUpForm = () => {
           minLength: Validators.Min(8),
           maxLength: Validators.Max(20),
           validate: (value) => {
-            const { password } = getValues()
-            return password === value || 'Passwords does not match'
-        },
+            const { password } = getValues();
+            return password === value || "Passwords does not match";
+          },
         })}
         error={errors.confirmPassword}
       />
       <Checkbox
         register={register("agree", {
-            required: Validators.Required,
+          required: Validators.Required,
         })}
         error={errors.agree}
-      >I accept the agreement</Checkbox>
-      <Button>Sign Up</Button>
+      >
+        I accept the agreement
+      </Checkbox>
+      <Button isLoading={isLoading}>Sign Up</Button>
       <p className={s.suggestion}>
-        Already a member?{' '}
+        Already a member?{" "}
         <Link to={ROUTES.SignIn} className={s.link}>
-            Sign In
+          Sign In
         </Link>
-    </p>
+      </p>
     </form>
   );
 };

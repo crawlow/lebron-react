@@ -16,8 +16,8 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
       onClick,
       isLoading,
       className,
-	  disabled,
-	  ...attrs
+      disabled,
+      ...attrs
     } = props;
     return (
       <button
@@ -29,7 +29,7 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
         onClick={
           isLoading || disabled || onClick === undefined ? undefined : onClick
         }
-		disabled={disabled}
+        disabled={disabled}
         {...attrs}
       >
         {children}

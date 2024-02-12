@@ -1,28 +1,36 @@
 import { ROUTES } from "@router/router";
 import { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Sidebar } from "./ui/sidebar/sidebar";
 import { Header } from "./ui/header/header";
 import s from "./layout.module.scss";
+import { useAppSelector } from "@entities/redux/store";
+import { selectUser } from "@entities/redux/authSlice";
 
 export const Layout = () => {
+  const useUser = () => useAppSelector(selectUser);
+  const user = useUser();
   const navigate = useNavigate();
-  const user = null;
+  const { pathname } = useLocation();
+
   useEffect(() => {
     if (user === undefined) {
-      console.log("redirect here");
       navigate(ROUTES.SignIn);
+    } else if (pathname === "/") {
+      navigate(ROUTES.Teams);
     }
   }, []);
 
+  if (user === undefined) return null;
+
   const [isMenuActive, setIsMenuActive] = useState(false);
   const handleMenu = () => {
-      setIsMenuActive(!isMenuActive);    
+    setIsMenuActive(!isMenuActive);
   };
 
   const closeMenu = () => {
     setIsMenuActive(false);
-  }
+  };
 
   return (
     <div className={s.default_layout}>

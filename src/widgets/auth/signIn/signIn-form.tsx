@@ -3,8 +3,11 @@ import { Input } from "@shared/input/input";
 import { Validators } from "@shared/common/validators/Validators";
 import { useForm } from "react-hook-form";
 import s from "./../style/sign-form.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "@router/router";
+import { useSignInMutation } from "@entities/api/auth/authApi";
+import { useAppDispatch } from "@entities/redux/store";
+import { loginAction } from "@entities/redux/authSlice";
 
 interface ISignInForm {
   login: string;
@@ -23,8 +26,23 @@ export const SignInForm = () => {
     },
   });
 
+  const [signIn, { isLoading }] = useSignInMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const onSubmit = async (data: ISignInForm) => {
-    console.log("onSubmit", data);
+    try {
+      const user = await signIn({
+        login: data.login,
+        password: data.password,
+      }).unwrap();
+      dispatch(loginAction(user));
+      navigate(ROUTES.Teams);
+    } catch (err: any) {
+      if (err?.status === 401)
+        console.log(`User with this credentials doesn't exist`);
+      else console.log(`Something went wrong`);
+    }
   };
 
   return (
@@ -52,7 +70,7 @@ export const SignInForm = () => {
         })}
         error={errors.password}
       />
-      <Button>Sign In</Button>
+      <Button isLoading={isLoading}>Sign In</Button>
       <p className={s.suggestion}>
         Not a member yet?{" "}
         <Link to={ROUTES.SignUp} className={s.link}>
